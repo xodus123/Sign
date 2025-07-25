@@ -1,0 +1,2037 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20251.25.0520.1026                               -->
+<workbook original-version='18.1' source-build='2025.1.2 (20251.25.0520.1026)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <BasicButtonObject />
+    <CollapsiblePane />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
+    <ZoneVisibilityControl />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='inference_accuracy.csv+(다중 연결)' inline='true' name='federated.00zjqxj0qew0r71476jjk1cm2iuf' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='inference_accuracy' name='textscan.0vgrqzm0bzo8fs1c328ad1miuhc2'>
+            <connection class='textscan' directory='C:/Users/user/Desktop/sign/outputs' filename='inference_accuracy.csv' password='' server='' />
+          </named-connection>
+          <named-connection caption='train_kfold_log' name='textscan.0vi5ti00294p6i19zidnz1szpb8k'>
+            <connection class='textscan' directory='C:/Users/user/Desktop/sign/logs' filename='train_kfold_log.csv' password='' server='' />
+          </named-connection>
+          <named-connection caption='train_single_log' name='textscan.049vz111lucgj713i5hjj1phaiyb'>
+            <connection class='textscan' directory='C:/Users/user/Desktop/sign/logs' filename='train_single_log.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation type='collection'>
+          <relation connection='textscan.0vgrqzm0bzo8fs1c328ad1miuhc2' name='inference_accuracy.csv' table='[inference_accuracy#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='ko_KR' separator=','>
+              <column datatype='string' name='model' ordinal='0' />
+              <column datatype='string' name='mode' ordinal='1' />
+              <column datatype='string' name='train_type' ordinal='2' />
+              <column datatype='real' name='accuracy' ordinal='3' />
+            </columns>
+          </relation>
+          <relation all='true' name='유니온' type='union'>
+            <columns character-set='UTF-8' header='yes' locale='ko_KR' separator=','>
+              <column datatype='string' name='model' />
+              <column datatype='string' name='mode' />
+              <column datatype='real' name='best_val_acc' />
+              <column datatype='real' name='best_val_loss' />
+              <column datatype='integer' name='best_epoch' />
+              <column datatype='real' name='train_acc' />
+              <column datatype='real' name='train_loss' />
+              <column datatype='string' name='Table Name' />
+            </columns>
+            <relation connection='textscan.049vz111lucgj713i5hjj1phaiyb' name='train_kfold_log.csv' table='[train_kfold_log#csv]' type='table'>
+              <columns character-set='UTF-8' header='yes' locale='ko_KR' separator=','>
+                <column datatype='string' name='model' ordinal='0' />
+                <column datatype='string' name='mode' ordinal='1' />
+                <column datatype='real' name='best_val_acc' ordinal='2' />
+                <column datatype='real' name='best_val_loss' ordinal='3' />
+                <column datatype='integer' name='best_epoch' ordinal='4' />
+                <column datatype='real' name='train_acc' ordinal='5' />
+                <column datatype='real' name='train_loss' ordinal='6' />
+              </columns>
+            </relation>
+            <relation connection='textscan.049vz111lucgj713i5hjj1phaiyb' name='train_single_log.csv' table='[train_single_log#csv]' type='table'>
+              <columns character-set='UTF-8' header='yes' locale='ko_KR' separator=','>
+                <column datatype='string' name='model' ordinal='0' />
+                <column datatype='string' name='mode' ordinal='1' />
+                <column datatype='real' name='best_val_acc' ordinal='2' />
+                <column datatype='real' name='best_val_loss' ordinal='3' />
+                <column datatype='integer' name='best_epoch' ordinal='4' />
+                <column datatype='real' name='train_acc' ordinal='5' />
+                <column datatype='real' name='train_loss' ordinal='6' />
+              </columns>
+            </relation>
+          </relation>
+        </relation>
+        <cols>
+          <map key='[Table Name]' value='[유니온].[Table Name]' />
+          <map key='[accuracy]' value='[inference_accuracy.csv].[accuracy]' />
+          <map key='[best_epoch]' value='[유니온].[best_epoch]' />
+          <map key='[best_val_acc]' value='[유니온].[best_val_acc]' />
+          <map key='[best_val_loss]' value='[유니온].[best_val_loss]' />
+          <map key='[mode (유니온)]' value='[유니온].[mode]' />
+          <map key='[mode]' value='[inference_accuracy.csv].[mode]' />
+          <map key='[model (유니온)]' value='[유니온].[model]' />
+          <map key='[model]' value='[inference_accuracy.csv].[model]' />
+          <map key='[train_acc]' value='[유니온].[train_acc]' />
+          <map key='[train_loss]' value='[유니온].[train_loss]' />
+          <map key='[train_type]' value='[inference_accuracy.csv].[train_type]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[inference_accuracy.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;ko&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;₩&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;ko_KR&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[유니온]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>model</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[model]</local-name>
+            <parent-name>[inference_accuracy.csv]</parent-name>
+            <remote-alias>model</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LKO_RKR' />
+            <object-id>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>mode</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[mode]</local-name>
+            <parent-name>[inference_accuracy.csv]</parent-name>
+            <remote-alias>mode</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LKO_RKR' />
+            <object-id>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>train_type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[train_type]</local-name>
+            <parent-name>[inference_accuracy.csv]</parent-name>
+            <remote-alias>train_type</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LKO_RKR' />
+            <object-id>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>accuracy</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[accuracy]</local-name>
+            <parent-name>[inference_accuracy.csv]</parent-name>
+            <remote-alias>accuracy</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>model</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[model (유니온)]</local-name>
+            <parent-name>[유니온]</parent-name>
+            <remote-alias>model</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LKO_RKR' />
+            <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>mode</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[mode (유니온)]</local-name>
+            <parent-name>[유니온]</parent-name>
+            <remote-alias>mode</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LKO_RKR' />
+            <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>best_val_acc</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[best_val_acc]</local-name>
+            <parent-name>[유니온]</parent-name>
+            <remote-alias>best_val_acc</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>best_val_loss</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[best_val_loss]</local-name>
+            <parent-name>[유니온]</parent-name>
+            <remote-alias>best_val_loss</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>best_epoch</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[best_epoch]</local-name>
+            <parent-name>[유니온]</parent-name>
+            <remote-alias>best_epoch</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>train_acc</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[train_acc]</local-name>
+            <parent-name>[유니온]</parent-name>
+            <remote-alias>train_acc</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>train_loss</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[train_loss]</local-name>
+            <parent-name>[유니온]</parent-name>
+            <remote-alias>train_loss</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Table Name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Table Name]</local-name>
+            <parent-name>[유니온]</parent-name>
+            <remote-alias>Table Name</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LKO_RKR' />
+            <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='loss_차이' datatype='real' name='[Calculation_1856327506664460288]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='(best_val_loss) - (train_loss)' />
+      </column>
+      <column caption='판정' datatype='string' name='[Calculation_1856327506669256706]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF([Calculation_1856327506664460288]) &gt; 0.2 THEN &quot;과적합!&quot; ELSE &quot;정상&quot; END' />
+      </column>
+      <column caption='하이라이트' datatype='string' name='[Calculation_1856327506674577412]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Calculation_1856327506669256706]=&quot;정상&quot; THEN &quot;정상&quot; ELSE &quot;과적합&quot; END' />
+      </column>
+      <column datatype='string' name='[Table Name]' role='dimension' type='nominal' />
+      <column caption='유니온' datatype='table' name='[__tableau_internal_object_id__].[_2F61EED8F9394C7C9B558695B76A6A8C]' role='measure' type='quantitative' />
+      <column caption='inference_accuracy.csv' datatype='table' name='[__tableau_internal_object_id__].[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]' role='measure' type='quantitative' />
+      <column caption='Accuracy' datatype='real' name='[accuracy]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[best_epoch]' role='measure' type='quantitative' />
+      <column caption='Best Val Acc' datatype='real' name='[best_val_acc]' role='measure' type='quantitative' />
+      <column datatype='real' name='[best_val_loss]' role='measure' type='quantitative' />
+      <column caption='Mode' datatype='string' name='[mode]' role='dimension' type='nominal' />
+      <column datatype='string' name='[model (유니온)]' role='dimension' type='nominal' />
+      <column caption='Model' datatype='string' name='[model]' role='dimension' type='nominal' />
+      <column datatype='real' name='[train_acc]' role='measure' type='quantitative' />
+      <column datatype='real' name='[train_loss]' role='measure' type='quantitative' />
+      <column caption='Train Type' datatype='string' name='[train_type]' role='dimension' type='nominal' />
+      <column-instance column='[__tableau_internal_object_id__].[_2F61EED8F9394C7C9B558695B76A6A8C]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:_2F61EED8F9394C7C9B558695B76A6A8C:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[__tableau_internal_object_id__].[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1856327506664460288]' derivation='Avg' name='[avg:Calculation_1856327506664460288:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[accuracy]' derivation='Avg' name='[avg:accuracy:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[best_val_acc]' derivation='Avg' name='[avg:best_val_acc:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[best_val_loss]' derivation='Avg' name='[avg:best_val_loss:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[train_loss]' derivation='Avg' name='[avg:train_loss:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1856327506674577412]' derivation='None' name='[none:Calculation_1856327506674577412:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Table Name]' derivation='None' name='[none:Table Name:nk]' pivot='key' type='nominal' />
+      <column-instance column='[model (유니온)]' derivation='None' name='[none:model (유니온):nk]' pivot='key' type='nominal' />
+      <column-instance column='[Calculation_1856327506664460288]' derivation='Sum' name='[sum:Calculation_1856327506664460288:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[accuracy]' derivation='Sum' name='[sum:accuracy:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[best_epoch]' derivation='Sum' name='[sum:best_epoch:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[best_val_acc]' derivation='Sum' name='[sum:best_val_acc:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[best_val_loss]' derivation='Sum' name='[sum:best_val_loss:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[train_acc]' derivation='Sum' name='[sum:train_acc:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[train_loss]' derivation='Sum' name='[sum:train_loss:qk]' pivot='key' type='quantitative' />
+      <group caption='동작(Table Name,model (유니온))' hidden='true' name='[Action (Table Name,model (유니온))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Table Name]' />
+          <groupfilter function='level-members' level='[model (유니온)]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[제외(model (유니온),Table Name,하이라이트)]' name-style='unqualified' user:auto-column='exclude'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[none:model (유니온):nk]' />
+          <groupfilter function='level-members' level='[none:Table Name:nk]' />
+          <groupfilter function='level-members' level='[none:Calculation_1856327506674577412:nk]' />
+        </groupfilter>
+      </group>
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' author-locale='ko_KR' class='hyper' dbname='C:/Users/user/AppData/Local/Temp/TableauTemp/#TableauTemp_1t6d2ar03sf52216c14e10aga08i.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='07/25/2025 11:23:45 AM' username='tableau_internal_user'>
+          <relation type='collection'>
+            <relation name='inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD' table='[Extract].[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]' type='table' />
+            <relation name='_2F61EED8F9394C7C9B558695B76A6A8C' table='[Extract].[_2F61EED8F9394C7C9B558695B76A6A8C]' type='table' />
+          </relation>
+          <cols>
+            <map key='[Table Name]' value='[_2F61EED8F9394C7C9B558695B76A6A8C].[Table Name]' />
+            <map key='[accuracy]' value='[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD].[accuracy]' />
+            <map key='[best_epoch]' value='[_2F61EED8F9394C7C9B558695B76A6A8C].[best_epoch]' />
+            <map key='[best_val_acc]' value='[_2F61EED8F9394C7C9B558695B76A6A8C].[best_val_acc]' />
+            <map key='[best_val_loss]' value='[_2F61EED8F9394C7C9B558695B76A6A8C].[best_val_loss]' />
+            <map key='[mode (유니온)]' value='[_2F61EED8F9394C7C9B558695B76A6A8C].[mode]' />
+            <map key='[mode]' value='[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD].[mode]' />
+            <map key='[model (유니온)]' value='[_2F61EED8F9394C7C9B558695B76A6A8C].[model]' />
+            <map key='[model]' value='[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD].[model]' />
+            <map key='[train_acc]' value='[_2F61EED8F9394C7C9B558695B76A6A8C].[train_acc]' />
+            <map key='[train_loss]' value='[_2F61EED8F9394C7C9B558695B76A6A8C].[train_loss]' />
+            <map key='[train_type]' value='[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD].[train_type]' />
+          </cols>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>model</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[model]</local-name>
+              <parent-name>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</parent-name>
+              <remote-alias>model</remote-alias>
+              <ordinal>0</ordinal>
+              <family>inference_accuracy.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>9</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LKO_RKR' />
+              <object-id>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>mode</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[mode]</local-name>
+              <parent-name>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</parent-name>
+              <remote-alias>mode</remote-alias>
+              <ordinal>1</ordinal>
+              <family>inference_accuracy.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LKO_RKR' />
+              <object-id>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>train_type</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[train_type]</local-name>
+              <parent-name>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</parent-name>
+              <remote-alias>train_type</remote-alias>
+              <ordinal>2</ordinal>
+              <family>inference_accuracy.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LKO_RKR' />
+              <object-id>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>accuracy</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[accuracy]</local-name>
+              <parent-name>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</parent-name>
+              <remote-alias>accuracy</remote-alias>
+              <ordinal>3</ordinal>
+              <family>inference_accuracy.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>20</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>model</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[model (유니온)]</local-name>
+              <parent-name>[_2F61EED8F9394C7C9B558695B76A6A8C]</parent-name>
+              <remote-alias>model</remote-alias>
+              <ordinal>4</ordinal>
+              <family>유니온</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>9</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LKO_RKR' />
+              <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>mode</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[mode (유니온)]</local-name>
+              <parent-name>[_2F61EED8F9394C7C9B558695B76A6A8C]</parent-name>
+              <remote-alias>mode</remote-alias>
+              <ordinal>5</ordinal>
+              <family>유니온</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LKO_RKR' />
+              <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>best_val_acc</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[best_val_acc]</local-name>
+              <parent-name>[_2F61EED8F9394C7C9B558695B76A6A8C]</parent-name>
+              <remote-alias>best_val_acc</remote-alias>
+              <ordinal>6</ordinal>
+              <family>유니온</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>22</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>best_val_loss</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[best_val_loss]</local-name>
+              <parent-name>[_2F61EED8F9394C7C9B558695B76A6A8C]</parent-name>
+              <remote-alias>best_val_loss</remote-alias>
+              <ordinal>7</ordinal>
+              <family>유니온</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>36</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>best_epoch</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[best_epoch]</local-name>
+              <parent-name>[_2F61EED8F9394C7C9B558695B76A6A8C]</parent-name>
+              <remote-alias>best_epoch</remote-alias>
+              <ordinal>8</ordinal>
+              <family>유니온</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>21</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>train_acc</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[train_acc]</local-name>
+              <parent-name>[_2F61EED8F9394C7C9B558695B76A6A8C]</parent-name>
+              <remote-alias>train_acc</remote-alias>
+              <ordinal>9</ordinal>
+              <family>유니온</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>28</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>train_loss</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[train_loss]</local-name>
+              <parent-name>[_2F61EED8F9394C7C9B558695B76A6A8C]</parent-name>
+              <remote-alias>train_loss</remote-alias>
+              <ordinal>10</ordinal>
+              <family>유니온</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>36</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Table Name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Table Name]</local-name>
+              <parent-name>[_2F61EED8F9394C7C9B558695B76A6A8C]</parent-name>
+              <remote-alias>Table Name</remote-alias>
+              <ordinal>11</ordinal>
+              <family>유니온</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LKO_RKR' />
+              <object-id>[_2F61EED8F9394C7C9B558695B76A6A8C]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='shape' field='[none:Calculation_1856327506674577412:nk]' palette=':default' type='shape'>
+            <map to='circle'>
+              <bucket>&quot;비정상&quot;</bucket>
+            </map>
+            <map to='square'>
+              <bucket>&quot;정상&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Calculation_1856327506674577412:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;과적합&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;비정상&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;정상&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_acc:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[sum:best_val_acc:qk]&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[sum:best_epoch:qk]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:accuracy:qk]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[sum:accuracy:qk]&quot;</bucket>
+            </map>
+            <map to='#9c755f'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:train_loss:qk]&quot;</bucket>
+            </map>
+            <map to='#9c755f'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[sum:train_loss:qk]&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[__tableau_internal_object_id__].[cnt:inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD:qk]&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[__tableau_internal_object_id__].[cnt:_2F61EED8F9394C7C9B558695B76A6A8C:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:Calculation_1856327506664460288:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[sum:Calculation_1856327506664460288:qk]&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_loss:qk]&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[sum:best_val_loss:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_acc (train_single_log.csv):qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[sum:best_val_acc (train_single_log.csv):qk]&quot;</bucket>
+            </map>
+            <map to='#ff9da7'>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[sum:train_acc:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;대한민국&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='유니온' id='_2F61EED8F9394C7C9B558695B76A6A8C'>
+            <properties context=''>
+              <relation all='true' name='유니온' type='union'>
+                <columns character-set='UTF-8' header='yes' locale='ko_KR' separator=','>
+                  <column datatype='string' name='model' />
+                  <column datatype='string' name='mode' />
+                  <column datatype='real' name='best_val_acc' />
+                  <column datatype='real' name='best_val_loss' />
+                  <column datatype='integer' name='best_epoch' />
+                  <column datatype='real' name='train_acc' />
+                  <column datatype='real' name='train_loss' />
+                  <column datatype='string' name='Table Name' />
+                </columns>
+                <relation connection='textscan.049vz111lucgj713i5hjj1phaiyb' name='train_kfold_log.csv' table='[train_kfold_log#csv]' type='table'>
+                  <columns character-set='UTF-8' header='yes' locale='ko_KR' separator=','>
+                    <column datatype='string' name='model' ordinal='0' />
+                    <column datatype='string' name='mode' ordinal='1' />
+                    <column datatype='real' name='best_val_acc' ordinal='2' />
+                    <column datatype='real' name='best_val_loss' ordinal='3' />
+                    <column datatype='integer' name='best_epoch' ordinal='4' />
+                    <column datatype='real' name='train_acc' ordinal='5' />
+                    <column datatype='real' name='train_loss' ordinal='6' />
+                  </columns>
+                </relation>
+                <relation connection='textscan.049vz111lucgj713i5hjj1phaiyb' name='train_single_log.csv' table='[train_single_log#csv]' type='table'>
+                  <columns character-set='UTF-8' header='yes' locale='ko_KR' separator=','>
+                    <column datatype='string' name='model' ordinal='0' />
+                    <column datatype='string' name='mode' ordinal='1' />
+                    <column datatype='real' name='best_val_acc' ordinal='2' />
+                    <column datatype='real' name='best_val_loss' ordinal='3' />
+                    <column datatype='integer' name='best_epoch' ordinal='4' />
+                    <column datatype='real' name='train_acc' ordinal='5' />
+                    <column datatype='real' name='train_loss' ordinal='6' />
+                  </columns>
+                </relation>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='_2F61EED8F9394C7C9B558695B76A6A8C' table='[Extract].[_2F61EED8F9394C7C9B558695B76A6A8C]' type='table' />
+            </properties>
+          </object>
+          <object caption='inference_accuracy.csv' id='inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD'>
+            <properties context=''>
+              <relation connection='textscan.0vgrqzm0bzo8fs1c328ad1miuhc2' name='inference_accuracy.csv' table='[inference_accuracy#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='ko_KR' separator=','>
+                  <column datatype='string' name='model' ordinal='0' />
+                  <column datatype='string' name='mode' ordinal='1' />
+                  <column datatype='string' name='train_type' ordinal='2' />
+                  <column datatype='real' name='accuracy' ordinal='3' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD' table='[Extract].[inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD]' type='table' />
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='AND'>
+              <expression op='='>
+                <expression op='[train_type]' />
+                <expression op='[Table Name]' />
+              </expression>
+              <expression op='='>
+                <expression op='[mode]' />
+                <expression op='[mode (유니온)]' />
+              </expression>
+              <expression op='='>
+                <expression op='[model]' />
+                <expression op='[model (유니온)]' />
+              </expression>
+            </expression>
+            <first-end-point object-id='inference_accuracy.csv_C0A8CCECDCDC411D94EC45B185DCC5BD' />
+            <second-end-point object-id='_2F61EED8F9394C7C9B558695B76A6A8C' />
+          </relationship>
+        </relationships>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <actions>
+    <action caption='하이라이트1' name='[Action1_2B1C699A913847DC923418E58495BEB3]'>
+      <activation auto-clear='true' type='on-hover' />
+      <source dashboard='대시보드 1' type='sheet' worksheet='모델별학습성능' />
+      <command command='tsc:brush'>
+        <param name='exclude' value='모델별정확도,모델별학습성능' />
+        <param name='special-fields' value='all' />
+        <param name='target' value='대시보드 1' />
+      </command>
+    </action>
+    <action caption='하이라이트3' name='[Action3_C6091B0CD63B469BAEE80B9CF609CCFF]'>
+      <activation auto-clear='true' type='on-hover' />
+      <source dashboard='대시보드 1' type='sheet' worksheet='모델별정확도' />
+      <command command='tsc:brush'>
+        <param name='exclude' value='모델별학습성능' />
+        <param name='special-fields' value='all' />
+        <param name='target' value='대시보드 1' />
+      </command>
+    </action>
+    <action caption='하이라이트2' name='[Action3_D0AD8353CC654B7A889672C3E320CE25]'>
+      <activation auto-clear='true' type='on-hover' />
+      <source dashboard='대시보드 1' type='sheet' worksheet='과적합판정표시' />
+      <command command='tsc:brush'>
+        <param name='exclude' value='과적합,모델별정확도,모델별학습성능' />
+        <param name='field-captions' value='하이라이트' />
+        <param name='target' value='대시보드 1' />
+      </command>
+    </action>
+  </actions>
+  <worksheets>
+    <worksheet name='과적합'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='inference_accuracy.csv+(다중 연결)' name='federated.00zjqxj0qew0r71476jjk1cm2iuf' />
+          </datasources>
+          <datasource-dependencies datasource='federated.00zjqxj0qew0r71476jjk1cm2iuf'>
+            <column caption='loss_차이' datatype='real' name='[Calculation_1856327506664460288]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='(best_val_loss) - (train_loss)' />
+            </column>
+            <column caption='판정' datatype='string' name='[Calculation_1856327506669256706]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF([Calculation_1856327506664460288]) &gt; 0.2 THEN &quot;과적합!&quot; ELSE &quot;정상&quot; END' />
+            </column>
+            <column datatype='string' name='[Table Name]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_1856327506669256706]' derivation='Attribute' name='[attr:Calculation_1856327506669256706:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1856327506664460288]' derivation='Avg' name='[avg:Calculation_1856327506664460288:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[best_val_loss]' derivation='Avg' name='[avg:best_val_loss:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[train_loss]' derivation='Avg' name='[avg:train_loss:qk]' pivot='key' type='quantitative' />
+            <column datatype='real' name='[best_val_loss]' role='measure' type='quantitative' />
+            <column datatype='string' name='[model (유니온)]' role='dimension' type='nominal' />
+            <column-instance column='[Table Name]' derivation='None' name='[none:Table Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[model (유니온)]' derivation='None' name='[none:model (유니온):nk]' pivot='key' type='nominal' />
+            <column-instance column='[train_loss]' derivation='Sum' name='[sum:train_loss:qk]' pivot='key' type='quantitative' />
+            <column datatype='real' name='[train_loss]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_loss:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:train_loss:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_loss:qk]&quot;</bucket>
+              <bucket>&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[sum:train_loss:qk]&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]' value='160' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='10' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]' />
+              <tooltip column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:Calculation_1856327506664460288:qk]' />
+              <tooltip column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_loss:qk]' />
+              <tooltip column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:train_loss:qk]' />
+              <tooltip column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[attr:Calculation_1856327506669256706:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[▶ 학습 유형: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Table Name:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 모델 구조: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model (유니온):nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 검증 손실: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_loss:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 학습 손실: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:train_loss:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 과적합 정도: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:Calculation_1856327506664460288:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 판정: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[attr:Calculation_1856327506669256706:nk]>]]></run>
+                <run>
+
+- 검증 손실(best_val_loss) 값이 높을수록 과적합 우려 ↑  학습 손실(train_loss)과의 격차 확인
+-  </run>
+                <run fontcolor='#000000'>과적합 지표 = 검증 손실(Validation Loss) – 학습 손실(Train Loss) </run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#000000'>Æ   </run>
+                <run fontcolor='#000000' underline='true'> 값이 0.1~0.2 이상 크면 과적합 의심</run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#000000'>    값이 0에 가까울수록 이상적 (항상 0일 필요는 없음)</run>
+                <run>Æ&#10;&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='size' value='1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Table Name:nk] * [federated.00zjqxj0qew0r71476jjk1cm2iuf].[Multiple Values])</rows>
+        <cols>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model (유니온):nk]</cols>
+      </table>
+      <simple-id uuid='{F25EC7F7-EEF7-4E77-B254-55A8EA27FF3C}' />
+    </worksheet>
+    <worksheet name='과적합판정표시'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='inference_accuracy.csv+(다중 연결)' name='federated.00zjqxj0qew0r71476jjk1cm2iuf' />
+          </datasources>
+          <datasource-dependencies datasource='federated.00zjqxj0qew0r71476jjk1cm2iuf'>
+            <column caption='loss_차이' datatype='real' name='[Calculation_1856327506664460288]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='(best_val_loss) - (train_loss)' />
+            </column>
+            <column caption='판정' datatype='string' name='[Calculation_1856327506669256706]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF([Calculation_1856327506664460288]) &gt; 0.2 THEN &quot;과적합!&quot; ELSE &quot;정상&quot; END' />
+            </column>
+            <column caption='하이라이트' datatype='string' name='[Calculation_1856327506674577412]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Calculation_1856327506669256706]=&quot;정상&quot; THEN &quot;정상&quot; ELSE &quot;과적합&quot; END' />
+            </column>
+            <column datatype='string' name='[Table Name]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_1856327506669256706]' derivation='Attribute' name='[attr:Calculation_1856327506669256706:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1856327506664460288]' derivation='Avg' name='[avg:Calculation_1856327506664460288:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[best_val_loss]' derivation='Avg' name='[avg:best_val_loss:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[train_loss]' derivation='Avg' name='[avg:train_loss:qk]' pivot='key' type='quantitative' />
+            <column datatype='real' name='[best_val_loss]' role='measure' type='quantitative' />
+            <column datatype='string' name='[model (유니온)]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_1856327506674577412]' derivation='None' name='[none:Calculation_1856327506674577412:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Table Name]' derivation='None' name='[none:Table Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[model (유니온)]' derivation='None' name='[none:model (유니온):nk]' pivot='key' type='nominal' />
+            <column datatype='real' name='[train_loss]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_loss:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:train_loss:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[제외(model (유니온),Table Name,하이라이트)]'>
+            <groupfilter function='except' user:ui-domain='database' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='crossjoin'>
+                <groupfilter function='level-members' level='[none:model (유니온):nk]' />
+                <groupfilter function='level-members' level='[none:Table Name:nk]' />
+                <groupfilter function='level-members' level='[none:Calculation_1856327506674577412:nk]' />
+              </groupfilter>
+              <groupfilter function='reorder-dimensionality'>
+                <groupfilter function='crossjoin'>
+                  <groupfilter function='member' level='[none:Calculation_1856327506674577412:nk]' member='&quot;정상&quot;' />
+                  <groupfilter function='crossjoin'>
+                    <groupfilter function='union'>
+                      <groupfilter function='member' level='[none:Table Name:nk]' member='&quot;train_kfold_log.csv&quot;' />
+                      <groupfilter function='member' level='[none:Table Name:nk]' member='&quot;train_single_log.csv&quot;' />
+                    </groupfilter>
+                    <groupfilter function='union'>
+                      <groupfilter function='member' level='[none:model (유니온):nk]' member='&quot;exp2&quot;' />
+                      <groupfilter function='member' level='[none:model (유니온):nk]' member='&quot;exp3&quot;' />
+                    </groupfilter>
+                  </groupfilter>
+                </groupfilter>
+                <order>
+                  <hierarchy name='[none:model (유니온):nk]' />
+                  <hierarchy name='[none:Table Name:nk]' />
+                  <hierarchy name='[none:Calculation_1856327506674577412:nk]' />
+                </order>
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]</column>
+            <column>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[제외(model (유니온),Table Name,하이라이트)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='10' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Calculation_1856327506674577412:nk]' />
+              <tooltip column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:Calculation_1856327506664460288:qk]' />
+              <tooltip column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_loss:qk]' />
+              <tooltip column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:train_loss:qk]' />
+              <tooltip column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[attr:Calculation_1856327506669256706:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[▶ 학습 유형: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Table Name:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 모델 구조: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model (유니온):nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 검증 손실: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_loss:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 학습 손실: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:train_loss:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 과적합 정도: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:Calculation_1856327506664460288:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 판정: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[attr:Calculation_1856327506669256706:nk]>]]></run>
+                <run>
+
+- 검증 손실(best_val_loss) 값이 높을수록 과적합 우려 ↑  학습 손실(train_loss)과의 격차 확인
+-  </run>
+                <run fontcolor='#000000'>과적합 지표 = 검증 손실(Validation Loss) – 학습 손실(Train Loss) </run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#000000'>Æ   </run>
+                <run fontcolor='#000000' underline='true'> 값이 0.1~0.2 이상 크면 과적합 의심</run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#000000'>    값이 0에 가까울수록 이상적 (항상 0일 필요는 없음)</run>
+                <run>Æ&#10;&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='size' value='0.51574587821960449' />
+                <format attr='mark-transparency' value='121' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Table Name:nk] * [federated.00zjqxj0qew0r71476jjk1cm2iuf].[Multiple Values])</rows>
+        <cols>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model (유니온):nk]</cols>
+      </table>
+      <simple-id uuid='{C43D9336-8736-4789-B56E-09960C281E72}' />
+    </worksheet>
+    <worksheet name='모델별정확도'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='inference_accuracy.csv+(다중 연결)' name='federated.00zjqxj0qew0r71476jjk1cm2iuf' />
+          </datasources>
+          <datasource-dependencies datasource='federated.00zjqxj0qew0r71476jjk1cm2iuf'>
+            <column caption='Accuracy' datatype='real' name='[accuracy]' role='measure' type='quantitative' />
+            <column-instance column='[accuracy]' derivation='Avg' name='[avg:accuracy:qk]' pivot='key' type='quantitative' />
+            <column caption='Mode' datatype='string' name='[mode]' role='dimension' type='nominal' />
+            <column caption='Model' datatype='string' name='[model]' role='dimension' type='nominal' />
+            <column-instance column='[mode]' derivation='None' name='[none:mode:nk]' pivot='key' type='nominal' />
+            <column-instance column='[model]' derivation='None' name='[none:model:nk]' pivot='key' type='nominal' />
+            <column-instance column='[train_type]' derivation='None' name='[none:train_type:nk]' pivot='key' type='nominal' />
+            <column caption='Train Type' datatype='string' name='[train_type]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <color column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:train_type:nk]' />
+              <lod column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:mode:nk]' />
+            </encodings>
+            <reference-line axis-column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:accuracy:qk]' boxplot-mark-exclusion='false' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline0' label-type='automatic' probability='95' scope='per-cell' symmetric='false' value-column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:accuracy:qk]' z-order='1' />
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[▶ 학습 유형:<[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:train_type:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 모델 구조:<[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 증강 여부: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:mode:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 평균 정확도: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:accuracy:qk]>]]></run>
+                <run>
+
+- Boxplot: 중앙값/분산 참고, 이상치 분포로 실험 안정성 진단 가능
+
+</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.25' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:accuracy:qk]</rows>
+        <cols>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model:nk]</cols>
+      </table>
+      <simple-id uuid='{C53495A3-6E45-4BFC-BE6F-45F45FC50F56}' />
+    </worksheet>
+    <worksheet name='모델별학습성능'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='inference_accuracy.csv+(다중 연결)' name='federated.00zjqxj0qew0r71476jjk1cm2iuf' />
+          </datasources>
+          <datasource-dependencies datasource='federated.00zjqxj0qew0r71476jjk1cm2iuf'>
+            <column datatype='string' name='[Table Name]' role='dimension' type='nominal' />
+            <column-instance column='[best_val_acc]' derivation='Avg' name='[avg:best_val_acc:qk]' pivot='key' type='quantitative' />
+            <column caption='Best Val Acc' datatype='real' name='[best_val_acc]' role='measure' type='quantitative' />
+            <column datatype='string' name='[mode (유니온)]' role='dimension' type='nominal' />
+            <column datatype='string' name='[model (유니온)]' role='dimension' type='nominal' />
+            <column-instance column='[Table Name]' derivation='None' name='[none:Table Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[mode (유니온)]' derivation='None' name='[none:mode (유니온):nk]' pivot='key' type='nominal' />
+            <column-instance column='[model (유니온)]' derivation='None' name='[none:model (유니온):nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='mark'>
+            <encoding attr='size-bar' field='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_acc:qk]' field-type='quantitative' max-size='1' min-size='0.005' type='centersize' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-color' id='refline0' value='#000000' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Square' />
+            <encodings>
+              <color column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_acc:qk]' />
+              <text column='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_acc:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[▶ 학습 유형:<[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Table Name:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 모델 구조:<[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model (유니온):nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 증강 여부: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:mode (유니온):nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[▶ 최고 검증 정확도: <[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_acc:qk]>]]></run>
+                <run>
+
+- 각 셀은 (실험, 구조, 증강여부)에 따른 최고 정확도
+</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='has-stroke' value='false' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-line-first' value='true' />
+                <format attr='mark-labels-line-last' value='true' />
+                <format attr='mark-labels-range-min' value='true' />
+                <format attr='mark-labels-range-max' value='true' />
+                <format attr='mark-labels-mode' value='all' />
+                <format attr='mark-labels-range-scope' value='pane' />
+                <format attr='mark-labels-range-field' value='' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Table Name:nk] / [federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:mode (유니온):nk])</rows>
+        <cols>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model (유니온):nk]</cols>
+      </table>
+      <simple-id uuid='{8514409B-0615-4B0B-AB6F-91945FDD1580}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='대시보드 1'>
+      <style />
+      <size sizing-mode='automatic' />
+      <zones>
+        <zone h='100000' id='11' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98130' id='14' param='horz' type-v2='layout-flow' w='99064' x='468' y='935'>
+            <zone h='98130' id='12' type-v2='layout-basic' w='99064' x='468' y='935' />
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+        <zone h='46262' id='3' name='모델별학습성능' w='45816' x='176' y='117' />
+        <zone h='51869' id='4' name='모델별정확도' w='42130' x='234' y='46612' />
+        <zone h='16939' id='5' name='모델별정확도' pane-specification-id='0' param='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:train_type:nk]' type-v2='color' w='4154' x='42305' y='69626' />
+        <zone forceUpdate='true' h='30491' id='8' type-v2='text' w='47338' x='50263' y='66355'>
+          <formatted-text>
+            <run bold='true' fontsize='14'>&lt; 모델 실험 결과 &gt;</run>
+            <run>Æ&#10;&#10;</run>
+            <run fontsize='12'>- CNN 구조(exp8, exp9)와 데이터 증강(aug) 적용 시, 모든 실험에서 최고 성능(0.97~1.00) 및 안정적 재현성 달성</run>
+            <run>Æ&#10;&#10;</run>
+            <run fontsize='12'>- 기본 모델(exp3~exp7)에서는 과적합이 심하게 발생, 검증 손실이 급증하며 정확도 변동성 큼</run>
+            <run>Æ&#10;&#10;</run>
+            <run fontsize='12'>- kfold와 single 모두 CNN/aug 실험이 우수, single은 일부 실험에서 변동폭 더 큼</run>
+            <run>Æ&#10;&#10;</run>
+            <run fontsize='12'>- 박스플롯 기준 exp8, exp9는 분산 최소로, 실전 적용/재현성에 가장 유리함</run>
+            <run>Æ&#10;&#10;</run>
+            <run fontsize='12'>- 결론: CNN+증강 모델은 평균 정확도 0.97 이상, 표준편차 최소로 가장 안정적이며, 과적합 위험 없이 반복 실험 간 재현성이 높음.  단순 기본 모델은 과적합 위험이 크고, 실제 도입에는 부적합.</run>
+            <run>Æ&#10;</run>
+          </formatted-text>
+        </zone>
+        <zone h='2804' hidden-by-user='true' id='17' type-v2='dashboard-object' w='1404' x='72791' y='818'>
+          <button action=''>
+            <toggle-action>tabdoc:toggle-button-click-action window-id=&quot;{414B9952-8D69-4069-A3A9-DFFEB745E926}&quot; zone-id=&quot;17&quot; zone-ids=[6]</toggle-action>
+            <button-visual-state />
+            <button-visual-state />
+          </button>
+        </zone>
+        <zone h='62500' id='19' name='과적합' w='52428' x='46460' y='1051' />
+        <zone h='3037' id='20' name='과적합' pane-specification-id='10' param='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]' type-v2='color' w='24049' x='78467' y='1051' />
+        <zone h='57126' hidden-by-user='true' id='21' name='과적합판정표시' show-title='false' w='52604' x='46343' y='6425' />
+        <zone h='2804' id='23' type-v2='dashboard-object' w='1404' x='50848' y='2336'>
+          <button action='' active-visual-state-index='1'>
+            <toggle-action>tabdoc:toggle-button-click-action window-id=&quot;{414B9952-8D69-4069-A3A9-DFFEB745E926}&quot; zone-id=&quot;23&quot; zone-ids=[21]</toggle-action>
+            <button-visual-state />
+            <button-visual-state />
+          </button>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1400' minheight='1400' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='25' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98130' id='24' param='vert' type-v2='layout-flow' w='99064' x='468' y='935'>
+                <zone fixed-size='280' h='46262' id='3' is-fixed='true' name='모델별학습성능' w='45816' x='176' y='117'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='62500' id='19' is-fixed='true' name='과적합' w='52428' x='46460' y='1051'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='3037' id='20' name='과적합' pane-specification-id='10' param='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]' type-v2='color' w='24049' x='78467' y='1051'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='57126' id='21' is-fixed='true' name='과적합판정표시' show-title='false' w='52604' x='46343' y='6425'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='51869' id='4' is-fixed='true' name='모델별정확도' w='42130' x='234' y='46612'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='16939' id='5' name='모델별정확도' pane-specification-id='0' param='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:train_type:nk]' type-v2='color' w='4154' x='42305' y='69626'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' h='30491' id='8' type-v2='text' w='47338' x='50263' y='66355'>
+                  <formatted-text>
+                    <run bold='true' fontsize='14'>&lt; 모델 실험 결과 &gt;</run>
+                    <run>Æ&#10;&#10;</run>
+                    <run fontsize='12'>- CNN 구조(exp8, exp9)와 데이터 증강(aug) 적용 시, 모든 실험에서 최고 성능(0.97~1.00) 및 안정적 재현성 달성</run>
+                    <run>Æ&#10;&#10;</run>
+                    <run fontsize='12'>- 기본 모델(exp3~exp7)에서는 과적합이 심하게 발생, 검증 손실이 급증하며 정확도 변동성 큼</run>
+                    <run>Æ&#10;&#10;</run>
+                    <run fontsize='12'>- kfold와 single 모두 CNN/aug 실험이 우수, single은 일부 실험에서 변동폭 더 큼</run>
+                    <run>Æ&#10;&#10;</run>
+                    <run fontsize='12'>- 박스플롯 기준 exp8, exp9는 분산 최소로, 실전 적용/재현성에 가장 유리함</run>
+                    <run>Æ&#10;&#10;</run>
+                    <run fontsize='12'>- 결론: CNN+증강 모델은 평균 정확도 0.97 이상, 표준편차 최소로 가장 안정적이며, 과적합 위험 없이 반복 실험 간 재현성이 높음.  단순 기본 모델은 과적합 위험이 크고, 실제 도입에는 부적합.</run>
+                    <run>Æ&#10;</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{E94A7953-D686-4022-B8FB-4474DF12945E}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='모델별학습성능'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_acc:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <highlight>
+          <color-one-way>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:best_val_acc:qk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Table Name:nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:mode (train_kfold_log.csv):nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:mode (유니온):nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model (train_kfold_log.csv):nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model (유니온):nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{E9E9D420-755B-4D7B-A4C9-03C71E6DF4DA}' />
+    </window>
+    <window class='worksheet' name='과적합'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='10' param='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <highlight>
+          <color-one-way>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:train_loss:qk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Calculation_1856327506669256706:nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Table Name:nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:mode (유니온):nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model (유니온):nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{70BE17AF-051A-4CD1-9CA8-696A628E94A9}' />
+    </window>
+    <window class='worksheet' name='과적합판정표시'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='10' param='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Calculation_1856327506674577412:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <highlight>
+          <color-one-way>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[avg:train_loss:qk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Calculation_1856327506669256706:nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Table Name:nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:mode (유니온):nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model (유니온):nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{7BBAE8E1-A88E-4F6F-AD49-F5389BC6DC4A}' />
+    </window>
+    <window class='worksheet' name='모델별정확도'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:train_type:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <highlight>
+          <color-one-way>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:mode:nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:model:nk]</field>
+            <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:train_type:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{04E47975-067E-4AE1-B14D-010FBE834670}' />
+    </window>
+    <window class='dashboard' maximized='true' name='대시보드 1'>
+      <viewpoints>
+        <viewpoint name='과적합'>
+          <zoom type='entire-view' />
+          <highlight field='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[:Measure Names]'>
+            <bucket-selection />
+          </highlight>
+        </viewpoint>
+        <viewpoint name='과적합판정표시'>
+          <zoom type='entire-view' />
+          <highlight field='[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:Calculation_1856327506674577412:nk]'>
+            <bucket-selection />
+          </highlight>
+        </viewpoint>
+        <viewpoint name='모델별정확도'>
+          <zoom type='entire-view' />
+          <highlight>
+            <color-one-way>
+              <field>[federated.00zjqxj0qew0r71476jjk1cm2iuf].[none:train_type:nk]</field>
+            </color-one-way>
+          </highlight>
+        </viewpoint>
+        <viewpoint name='모델별학습성능'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='12' />
+      <simple-id uuid='{414B9952-8D69-4069-A3A9-DFFEB745E926}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='과적합' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='과적합판정표시' width='192'>
+      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
+      AABJRU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='192' name='대시보드 1' width='192'>
+      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
+      /H+eTFGrzRpZrQAAAABJRU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='192' name='모델별정확도' width='192'>
+      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
+      rkJggg==
+    </thumbnail>
+    <thumbnail height='192' name='모델별학습성능' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAAQzUlEQVR4nO3d6W8c93nA8e/M7s7sffJY7pIUSZEidfqQFeRq0ORFijiv+iII0L/GBYq+
+      6esif0KKAjGCxEmdAE0DW7IsmaZE6qRESryvvW/u7hx9kdix0iZRHI9W9O/5vBNBcB4N98sZ
+      SpyHmuu6LkIoSh/0AEIMknIBNBqNQY8gXiLKBSB3fOKzlAtAiM+SAITSJAChNAlAKE0CEEqT
+      AJ6DY/fZ2Nym0WjQaDY42NmiXGvyXz/9CeXj/gubo14pUChXaDZqFIslNre2Odrb4ic//g+q
+      L2oM12ZzY4tGvUG90eBof4dipcGdj6/x7m+vv6AhoFkrcVSq0KhXKZfKbGxs0eu2+Pcf/Yi+
+      /fz/0uf3cMYvjSe3PuDa6j7n5k9TaHYxei0IBBnP51/oHL9+95ckxmYpPn3A+OwCuu6gByIM
+      T88Tf0GfyZ07N/nNnS0uLpxmu9Ag7uvj+HzMjA1jHHdfzBDAf//6XYz0KToHj8lNzdHD5YP3
+      r+H6fNTaPYZi5nN9HN9bb731lrejvly63S6m+Xwn5xORRBLLdsmOjZPNRNlcX+P8q5eplo5w
+      NJNMKu7RtH80R8gkHEtwZm6GcqFI34iRS4Xp9roMZfMEXsD1PJxIYvVtRkdz5EZT7G6sM3/h
+      VTqNOqP5SZLxiPdDANFwkFAszsz0FO1alXI/wJtvfpfZU+Nkkgl0TXuuj6N98rNAjUZDif8k
+      arVahMPhQY/xcni+14j3Bviy01T7Ybh3bt7jn99ZHOgMqXiQH/zD2YHOABA3fcSDvoHO0Lcd
+      1ksv7tbpj8k3wUJpEoBQmgQglCYBCKVJAEJpEoBQmgQglCYBCKVJAEJpEoBQmgQglCYBCKVJ
+      AEJpEoBQmgQglCYBCKVJAEJpEoBQmgQglPY5AnCxLAtw6R53f/888+/e5roOlm0D4Ng2jqPU
+      48biBHpmm0ynVuCd397k2197jV7foVhrEw35iIVDlJs95k9PAfDhtetMT2b46S9u8ub3v0E8
+      M8SD5VUyEYtDJ83fv3GO/dXbtOKT2K0aU/kMjzePuHDuDLXCPo2+Rq1YYmwyh1/TiSeTJ/5S
+      lE1EOJfPcPXRLiOxMOcnhtgs1tE1ja5lMRQNUWt3CRkBNio1T2ZwHIe7V6+SzmbJzc7y4PqH
+      TCzM8/TOHSbm53ly5w4zly6xs/qIucuvEzcTnsxROjzi4dJtXv3m16kWi2w8fMTE7GmePHjI
+      UHaUbqeDEQzi9weYffWSJzO4jsPqjQ+JplLk5s6wfmsJMxym02gQisVolsukxsaefd2ZkQSj
+      QwkWFz/muFbk1tX3ubOxy937j9jf2eKT5WM7q0uUun4uXpxnY6fI8uJNGvurVKwQfv0Puzbu
+      Ly3RrOzyn7/8gFplH8t2WbrzgJTR4/HaE1bu3Gdx+e6f387hWvzPr37Ox7dvsVc45NbNFW7e
+      uEmp1vniz9rfIBE2WdkqkAiZ7FYabBXrpCJBkmGTZqeH36dTbXc5rLc8m8Hq9RgeH8fq99F1
+      nXQ2i23b9Ltdth4+pHp0hOs4JIaHMIJBz+aolUqcv3KZRqVCu9li+uw8qeEhcqcmcR2HbucY
+      wzQ52N72bAbbtkgMj+A6DpquE02lSI+N4Q8EqB4eAlAvFp+9Ami+AMPpDJm5M0QMeOUrPoZz
+      WQxNA81hdXmJtuXjO//4T7hWj9zQCPXyHuHMAj6ry8H+PkZY58aNG6RSGf7um1Ps7B7x1XmT
+      39x6ytxckQsLpyk0XSZPTXBm7hSN47+wnsZ1GJucIRSJUzk8IJoI83TrCE1/ua4Zh7UW58eH
+      uLtdJBo02K00qHW6jCWjpKMhWt0+k5k41XaXTtvyZIaAaVIvlkhlszQqFQ42N8jkcgSjUbJT
+      U4xMTNCq1WnVath9C/jrFoQ9r5HxPPcXb3HmlQvoPh9bj9c580qC/Mw0h9vbOI6LGQpx6syc
+      J8cH8PkDdJoNoqk0jVKJ0s4OuGD1+2SnZ6gc7BNNpk7eXiDb6lFvdkgm4mjPuf3rs2Qv0B/I
+      XqATuBvU5zdIJY1BjyG+JF6u+wghXjAJQChNAhBKkwCE0iQAoTQJQChNAhBKkwCE0iQAoTQJ
+      QChNAhBKkwCE0iQAoTQJQChNAhBKkwCE0iQAoTQJQCjtxD0S+bfSdA3NP9jnYDW/788vAnhh
+      XJwBPxI+6CfS1QvA8GMMe7MP53kZ4QCG7+VIoG8P9hVoDfj4cgsklCYBCKVJAEJpEoBQmgQg
+      lCYBCKVJAEJpEoBQmgQglCYBCKVJAEJpEoBQmgQglCYBCKVJAEJpEoBQmgQglCYBCKVJAEJp
+      EoBQ2gl4KN6iVGqSySSfeWur1SISiQxopv9rKGxydiTF9a1DhiJBRqMhmt0+yZBJp29hOS6a
+      BgFdZ7fR9GQG13G4e/1DMmNZslNTPLhxk5mLF3j40SLZ6Sl2H6+RGMrQbXeYv/IGpt/0ZI5a
+      qczDpdu88vWv0j0+pri/jxkKUdjbJ5ZI4Lou/kCAdrPJ/OXLnszgui5rix8RSaXITs+wfmuJ
+      UCxGq1olnslQPToik8ufhABctp6sUaokePpwhfzUeUr1FlPjGXY3n5AcnWQkM9gtDwDpcJD7
+      RxVSIZN8PIJP17Bdl+pxj5jhJ+CDo2aHXNy7aPu9Hulslm67g67rJEeGsfp9XNclGI6QGRsj
+      FItSPnxIo1IhGs56Mkf58Ij5116hVi4zOjFOpVCk2+kwNJalWizhOg656SkqhaInxwewrT7R
+      VBqr10XTdRJDwwSjEbqtFoXtbXx+P/VS8STcAukEgwZBwyA/NUskHCURMQiYIYLB4KCH+1Sp
+      fczCcJK+7bBXb6EBfcshbgZo9Cw0TSMVNunZtmczBAyTyuEhZjhMo1Jhb/0J1aMCAdPEdWwi
+      iTjhWIxwNEoik/Fsjkx2lEe3VzCCQQq7e+ysr6PrPsqHRyTSKVzXpVooYoZMwJu1KD5/gGa1
+      QiAYpFEqsb++Rqtaw+r3GcqP4/P78RsGmusOejXRi/XLlUf867XVgc6QCgf4wZX8QGcAMP0a
+      pn+wXwMt22W71hvY8U/AFUAI70gAQmkSgFCaBCCUJgEIpUkAQmkSgFCaBCCUJgEIpUkAQmkS
+      gFCaBCCUJgEIpUkAQmkSgFCaBCCUJgEIpUkAQmkSgFDap1sh+r/fHvBl53NdEoHBdh8L6Pid
+      wZ9rnwO64wx2BhcMjx6Mfx6fBmDbthIB6DrEwsZAZ4iYPix78Oc6EtCJDfqheAeCujaw438a
+      wMu0YsRLtuaj0PVuNcnz6Gka3QF+0j/R92k4Ad9AZ7Bth2NtcOdCvgcQSpMAhNIkAKE0CUAo
+      TQIQSpMAhNIkAKE0CUAoTQIQSpMAhNIkAKE0CUAoTQIQSpMAhNIkAKE0CUAoTQIQSpMAhNK+
+      0ACO222efcTapd3ufJGHEOIL5f/sHzq1Am//+n2+deUS6AZHpRqhkJ94OEi52ePiuXk012V9
+      9R4+w6Bj6bQbdaamT7G+vkmv3mDq/Aytlsv86UnAYmlxkXQqysj4DDtPH5GbPkvSdLi3vkvC
+      cHADYdKpBPjDpGL/33PJLq1mCyMYRNc1XMfluHNMOBJBfwmeq/1ELhZmLhPnw50j8rEIcTNA
+      33FwXJdjy2YkEqJr2ZQ6XerdriczOLbNynvvkRodZWJhgbtXrzK5sMD68jKTC2d5vLTEwleu
+      sPngAfNXrpAKJT2Z43Bnj9XlFV77xtcoHxXYWF1jJD+G1e8TTyXZebpJPJkgmogzPjfryQyO
+      43D/2jWiySST586xtvQxRjBEs1pl8uxZ1m/fIpPLPXsFMKNJ8qMZHj56TK92xK3rH/B4v8Da
+      k20qxSOs37/f/t4OT9dX2Vh/jGN1ePtXV3F6LSrtPtfef5/tnd1PP2a3VaLc6PHeOz+m2YNH
+      24c8XL5NOjfOwd4OB3tb/Pxn76IZf2JTg2Nxe/E6KysrHBQLLC/e4+nGUyqNY09O3OcVMfzc
+      P6oSNQIcWzZhw0/PdkgEDTp9m61ak0TQYCQSBI+6tfp9hicmcBwHXdcZzo/jui4aGpv371Er
+      FugdHzOUyxGMRLwZAmjUapx/43Wa9Qbd42Nmzs2DptGo1TGCJqfmTlMtlSnsH+DVIhLHtkmN
+      jqJpGpquE44nGJ2aIp3N0qrXOf3aa3TbnWevALruZ2ryFMlUipAfvmWmyIwM4dc00BweLS/R
+      svzkT00TTQ7h13UCAR9jIwf86r1Fvv/m9wj5LQq1Jrdu3ECLJHjj69+mWjrilQs/5Gdvv83l
+      b32XsenXODg4YvzUNJGhPKdn50maf+puTGM0N0E4mqReLJIeinD73gPGp894c+Y+p716m4Xh
+      BKvFGgFdp9Wz6PQt6l2ddMjExeVppUHAp+PVGpyAadJpNElnszQqFQo722RyOYLRKBML88y9
+      /jqdZpNmtYrV7UEk4Mkc+elT3Fu8xZmL5zFMg621J2Qn8li9HtVSGbtvMb1whnaziVcLIXx+
+      P/1ej1g6Tb1UolYoEDBNSvt7ZKem2X30mOz0NJp7wpYBua6DbTv4fD60z3H23r27xr99tObB
+      ZM8vEfTzvQsjA50BIBXykQr5//I7eqhvO6yXvLklfB6D/dt/Dpqm4x/wMifx5SGvJKE0CUAo
+      TQIQSpMAhNIkAKE0CUAoTQIQSpMAhNIkAKE0CUAoTQIQSpMAhNIkAKE0CUAoTQIQSpMAhNIk
+      AKE0CUAo7cQ9Evk3c11syx7oCI6jvxRfeV6OpTIavgGeDOUCsB2X7rH1l9/RQ32fRsA3+Jef
+      7tVKhr+CpkE44BvY8V+GL0RCDIwEIJQmAQilSQBCaRKAUJoEIJQmAQilSQBCaRKAUJoEIJQm
+      AQilSQBCaRKAUJoEIJQmAQilSQBCaRKAUJoEIJQmAQilSQBCaSfgoXiLo8MawyNpXNdF0zRc
+      16XTaRMORwA+12+M/6JlYyHOjiS5tnHIaCxEJhyk3D5mPBllv96mZzsMhU2qxz0aPW9+M7rj
+      OKy8f5V0dpTxuTnufXCdmUsXeXjzI3Kzp9l6sEo8k6bf7bJw5Q0wI57MUTw45MHSMq9/82tU
+      ikWePnxMdiLPcbtDPJXkYHuXWDJBKBJm4sycJzO4jsOdD64TS6WYOrvAvQ9vcPrSJe5dv05+
+      bpbdx2uEopGTEIDL3vYGpcohG4/vk5s8R7FaZ2pymH6rSTo3xUg6MeghSQQNVvbLJIIGI9EQ
+      ps/HnmXj1zX2622Go0EykSA+XfMsAKvXY3g8T69zjK7rpMeyuK6Lz+8nYJgMT+SJp9OsL6/Q
+      rNXIJLwJoFoqc+Erl6lXq7SbbWbOzlMtl+m0WmQnxslO5Nlae0IkFmVibtaTGWzLIjUygtXr
+      oek6mdwYruPgNwLouk4mlyORSZ+EWyCdcMgknkgyNbtAKplkbCRNLJYgFo+BO+j5fueg0eHM
+      cIKubbNVbdJ3HBJBg2bXYjwZYSwWZqvapN33bidRwDSpl8pEEnEalQoHG5tUDg7xGwYBI0Ai
+      k8EIBommUiSHhz2bIzsxzqPlu4QiEZKZFHubWyTTaQKmycHOLvVqjYnZGYLh8O/2onjAFwjQ
+      aTYJxaLUy2UON7co7u3hNwwMM0gslcQMh9Fc131JXkIvxi+WH/Ev7z0Y6AzpSIAffnVioDMA
+      xEwf8eDgdvIAWI7LYaM/sOOfgCuAEN6RAITSJAChNAlAKE0CEEqTAITSJAChNAlAKE0CEEqT
+      AITSJAChNAlAKE0CEEqTAITSJAChNAlAKE0CEEqTAITSJAChtP8FN2kU53dXnFUAAAAASUVO
+      RK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>
